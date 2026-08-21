@@ -1,0 +1,288 @@
+.project-details-page {
+    min-height: 100vh;
+    padding: 32px;
+    background: #f8fafc;
+    color: #172033;
+    box-sizing: border-box;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.details-top {
+    max-width: 1100px;
+    margin: 0 auto 25px;
+}
+
+.back-btn {
+    border: none;
+    background: transparent;
+    color: #64748b;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    color: #2563eb;
+}
+
+.project-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.details-label {
+    margin: 0 0 7px;
+    color: #2563eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.project-title h1 {
+    margin: 0;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.details-location {
+    margin: 8px 0 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.details-status {
+    display: inline-flex;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: #dcfce7;
+    color: #15803d;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+
+.details-main-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.details-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+}
+
+.card-title {
+    margin-bottom: 23px;
+}
+
+.card-title h2 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.card-title span {
+    display: block;
+    margin-top: 5px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 23px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.info-item span {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.info-item strong {
+    color: #334155;
+    font-size: 14px;
+}
+
+.status-text {
+    color: #15803d !important;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-content {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.progress-circle {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    border: 9px solid #dbeafe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.progress-circle span {
+    color: #2563eb;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.progress-info {
+    flex: 1;
+}
+
+.progress-info h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 16px;
+}
+
+.progress-info p {
+    margin: 7px 0 16px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #2563eb;
+    border-radius: 20px;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description-card {
+    max-width: 1100px;
+    margin: 20px auto 0;
+}
+
+.description-text {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions-card {
+    max-width: 1100px;
+    margin: 20px auto 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.action-primary,
+.action-secondary {
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.action-primary {
+    border: none;
+    background: #2563eb;
+    color: white;
+}
+
+.action-primary:hover {
+    background: #1d4ed8;
+}
+
+.action-secondary {
+    border: 1px solid #dbe2ea;
+    background: white;
+    color: #475569;
+}
+
+.action-secondary:hover {
+    background: #f8fafc;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    .details-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .project-details-page {
+        padding: 20px;
+    }
+
+    .project-title {
+        flex-direction: column;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
