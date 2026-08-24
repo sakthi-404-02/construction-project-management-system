@@ -2,46 +2,49 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/ClientDetails.css";
 
+const defaultClients = {
+    1: {
+        id: 1,
+        name: "Arun Kumar",
+        company: "Arun Builders",
+        phone: "+91 98765 43210",
+        email: "arunbuilders@gmail.com",
+        location: "Chennai",
+        projects: 2,
+        status: "Active",
+    },
+
+    2: {
+        id: 2,
+        name: "Ravi Enterprises",
+        company: "Ravi Enterprises",
+        phone: "+91 98765 12345",
+        email: "ravi@ravi-enterprises.com",
+        location: "Madurai",
+        projects: 3,
+        status: "Active",
+    },
+
+    3: {
+        id: 3,
+        name: "Karthik",
+        company: "Karthik Constructions",
+        phone: "+91 91234 56789",
+        email: "karthik@gmail.com",
+        location: "Coimbatore",
+        projects: 1,
+        status: "Inactive",
+    },
+};
+
 function ClientDetails() {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const clients = [
-        {
-            id: "1",
-            name: "Arun Kumar",
-            company: "Arun Builders",
-            phone: "+91 98765 43210",
-            email: "arunbuilders@gmail.com",
-            location: "Chennai",
-            projects: 2,
-            status: "Active",
-        },
-        {
-            id: "2",
-            name: "Ravi Enterprises",
-            company: "Ravi Enterprises",
-            phone: "+91 98765 12345",
-            email: "ravi@ravi-enterprises.com",
-            location: "Madurai",
-            projects: 3,
-            status: "Active",
-        },
-        {
-            id: "3",
-            name: "Karthik",
-            company: "Karthik Constructions",
-            phone: "+91 91234 56789",
-            email: "karthik@gmail.com",
-            location: "Coimbatore",
-            projects: 1,
-            status: "Inactive",
-        },
-    ];
+    const savedClients =
+        JSON.parse(localStorage.getItem("clients")) || defaultClients;
 
-    const client = clients.find(
-        (item) => item.id === id
-    );
+    const client = savedClients[id];
 
     if (!client) {
         return (
@@ -62,6 +65,7 @@ function ClientDetails() {
     return (
         <div className="client-details-page">
 
+            {/* Header */}
             <div className="client-details-header">
 
                 <button
@@ -89,6 +93,7 @@ function ClientDetails() {
 
             </div>
 
+            {/* Details */}
             <div className="client-details-grid">
 
                 <div className="client-details-card">
@@ -129,6 +134,7 @@ function ClientDetails() {
 
                 </div>
 
+                {/* Overview */}
                 <div className="client-details-card">
 
                     <div className="client-card-heading">
@@ -163,6 +169,7 @@ function ClientDetails() {
 
             </div>
 
+            {/* Actions */}
             <div className="client-details-card client-actions">
 
                 <h2>Actions</h2>

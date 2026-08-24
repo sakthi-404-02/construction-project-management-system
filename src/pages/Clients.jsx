@@ -1,44 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Clients.css";
+
+const defaultClients = {
+    1: {
+        id: 1,
+        name: "Arun Kumar",
+        company: "Arun Builders",
+        phone: "+91 98765 43210",
+        email: "arunbuilders@gmail.com",
+        location: "Chennai",
+        projects: 2,
+        status: "Active",
+    },
+
+    2: {
+        id: 2,
+        name: "Ravi Enterprises",
+        company: "Ravi Enterprises",
+        phone: "+91 98765 12345",
+        email: "ravi@ravi-enterprises.com",
+        location: "Madurai",
+        projects: 3,
+        status: "Active",
+    },
+
+    3: {
+        id: 3,
+        name: "Karthik",
+        company: "Karthik Constructions",
+        phone: "+91 91234 56789",
+        email: "karthik@gmail.com",
+        location: "Coimbatore",
+        projects: 1,
+        status: "Inactive",
+    },
+};
 
 function Clients() {
     const navigate = useNavigate();
 
+    const [clients, setClients] = useState(() => {
+        const savedClients = localStorage.getItem("clients");
+
+        return savedClients
+            ? Object.values(JSON.parse(savedClients))
+            : Object.values(defaultClients);
+    });
+
     const [searchTerm, setSearchTerm] = useState("");
 
-    const clients = [
-        {
-            id: 1,
-            name: "Arun Kumar",
-            company: "Arun Builders",
-            phone: "+91 98765 43210",
-            email: "arunbuilders@gmail.com",
-            location: "Chennai",
-            projects: 2,
-            status: "Active",
-        },
-        {
-            id: 2,
-            name: "Ravi Enterprises",
-            company: "Ravi Enterprises",
-            phone: "+91 98765 12345",
-            email: "ravi@ravi-enterprises.com",
-            location: "Madurai",
-            projects: 3,
-            status: "Active",
-        },
-        {
-            id: 3,
-            name: "Karthik",
-            company: "Karthik Constructions",
-            phone: "+91 91234 56789",
-            email: "karthik@gmail.com",
-            location: "Coimbatore",
-            projects: 1,
-            status: "Inactive",
-        },
-    ];
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const savedClients = localStorage.getItem("clients");
+
+            if (savedClients) {
+                setClients(Object.values(JSON.parse(savedClients)));
+            }
+        };
+
+        window.addEventListener("storage", handleStorageChange);
+
+        return () => {
+            window.removeEventListener(
+                "storage",
+                handleStorageChange
+            );
+        };
+    }, []);
 
     const filteredClients = clients.filter((client) => {
         const search = searchTerm.toLowerCase();
@@ -58,12 +87,15 @@ function Clients() {
             <div className="clients-header">
 
                 <div>
-                    <p className="clients-label">CLIENT MANAGEMENT</p>
+                    <p className="clients-label">
+                        CLIENT MANAGEMENT
+                    </p>
 
                     <h1>Clients</h1>
 
                     <p className="clients-description">
-                        Manage your construction project clients and their information.
+                        Manage your construction project clients
+                        and their information.
                     </p>
                 </div>
 
@@ -92,7 +124,8 @@ function Clients() {
                     <strong>
                         {
                             clients.filter(
-                                (client) => client.status === "Active"
+                                (client) =>
+                                    client.status === "Active"
                             ).length
                         }
                     </strong>
@@ -104,7 +137,7 @@ function Clients() {
                     <strong>
                         {clients.reduce(
                             (total, client) =>
-                                total + client.projects,
+                                total + Number(client.projects || 0),
                             0
                         )}
                     </strong>
@@ -138,7 +171,6 @@ function Clients() {
                 <table className="clients-table">
 
                     <thead>
-
                     <tr>
                         <th>Client</th>
                         <th>Company</th>
@@ -148,7 +180,6 @@ function Clients() {
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-
                     </thead>
 
                     <tbody>
@@ -194,20 +225,20 @@ function Clients() {
                                 </td>
 
                                 <td>
-                    <span className="project-count">
-                      {client.projects}
-                    </span>
+                                    <span className="project-count">
+                                        {client.projects}
+                                    </span>
                                 </td>
 
                                 <td>
 
-                    <span
-                        className={`client-status ${
-                            client.status.toLowerCase()
-                        }`}
-                    >
-                      {client.status}
-                    </span>
+                                    <span
+                                        className={`client-status ${
+                                            client.status.toLowerCase()
+                                        }`}
+                                    >
+                                        {client.status}
+                                    </span>
 
                                 </td>
 
@@ -216,8 +247,8 @@ function Clients() {
                                     <button
                                         className="client-view-btn"
                                         onClick={() =>
-                                            alert(
-                                                `${client.name} details`
+                                            navigate(
+                                                `/clients/${client.id}`
                                             )
                                         }
                                     >
@@ -227,8 +258,8 @@ function Clients() {
                                     <button
                                         className="client-edit-btn"
                                         onClick={() =>
-                                            alert(
-                                                `Edit ${client.name}`
+                                            navigate(
+                                                `/clients/${client.id}/edit`
                                             )
                                         }
                                     >

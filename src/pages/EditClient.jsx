@@ -2,59 +2,87 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/EditClient.css";
 
+const defaultClients = {
+    1: {
+        id: 1,
+        name: "Arun Kumar",
+        company: "Arun Builders",
+        phone: "+91 98765 43210",
+        email: "arunbuilders@gmail.com",
+        location: "Chennai",
+        projects: 2,
+        status: "Active",
+    },
+
+    2: {
+        id: 2,
+        name: "Ravi Enterprises",
+        company: "Ravi Enterprises",
+        phone: "+91 98765 12345",
+        email: "ravi@ravi-enterprises.com",
+        location: "Madurai",
+        projects: 3,
+        status: "Active",
+    },
+
+    3: {
+        id: 3,
+        name: "Karthik",
+        company: "Karthik Constructions",
+        phone: "+91 91234 56789",
+        email: "karthik@gmail.com",
+        location: "Coimbatore",
+        projects: 1,
+        status: "Inactive",
+    },
+};
+
 function EditClient() {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const clients = {
-        1: {
-            name: "Arun Kumar",
-            company: "Arun Builders",
-            phone: "+91 98765 43210",
-            email: "arunbuilders@gmail.com",
-            location: "Chennai",
-        },
+    const savedClients =
+        JSON.parse(localStorage.getItem("clients")) || defaultClients;
 
-        2: {
-            name: "Ravi Enterprises",
-            company: "Ravi Enterprises",
-            phone: "+91 98765 12345",
-            email: "ravi@ravi-enterprises.com",
-            location: "Madurai",
-        },
-
-        3: {
-            name: "Karthik",
-            company: "Karthik Constructions",
-            phone: "+91 91234 56789",
-            email: "karthik@gmail.com",
-            location: "Coimbatore",
-        },
-    };
-
-    const existingClient = clients[id];
+    const existingClient = savedClients[id];
 
     const [formData, setFormData] = useState(
         existingClient || {
+            id: Number(id),
             name: "",
             company: "",
             phone: "",
             email: "",
             location: "",
+            projects: 0,
+            status: "Active",
         }
     );
 
     const handleChange = (event) => {
         const { name, value } = event.target;
 
-        setFormData({
-            ...formData,
+        setFormData((previousData) => ({
+            ...previousData,
             [name]: value,
-        });
+        }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        const currentClients =
+            JSON.parse(localStorage.getItem("clients")) || defaultClients;
+
+        currentClients[id] = {
+            ...currentClients[id],
+            ...formData,
+        };
+
+        localStorage.setItem(
+            "clients",
+            JSON.stringify(currentClients)
+        );
 
         alert("Client updated successfully!");
 
@@ -115,7 +143,6 @@ function EditClient() {
                     <div className="edit-form-grid">
 
                         <div className="edit-form-group">
-
                             <label>
                                 Full Name <span>*</span>
                             </label>
@@ -127,11 +154,9 @@ function EditClient() {
                                 onChange={handleChange}
                                 required
                             />
-
                         </div>
 
                         <div className="edit-form-group">
-
                             <label>
                                 Company Name <span>*</span>
                             </label>
@@ -143,11 +168,9 @@ function EditClient() {
                                 onChange={handleChange}
                                 required
                             />
-
                         </div>
 
                         <div className="edit-form-group">
-
                             <label>
                                 Phone Number <span>*</span>
                             </label>
@@ -159,11 +182,9 @@ function EditClient() {
                                 onChange={handleChange}
                                 required
                             />
-
                         </div>
 
                         <div className="edit-form-group">
-
                             <label>
                                 Email Address <span>*</span>
                             </label>
@@ -175,11 +196,9 @@ function EditClient() {
                                 onChange={handleChange}
                                 required
                             />
-
                         </div>
 
                         <div className="edit-form-group full-width">
-
                             <label>
                                 Location <span>*</span>
                             </label>
@@ -191,11 +210,9 @@ function EditClient() {
                                 onChange={handleChange}
                                 required
                             />
-
                         </div>
 
                     </div>
-
                 </div>
 
                 {/* Footer */}

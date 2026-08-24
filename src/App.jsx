@@ -4,6 +4,8 @@ import Projects from "./pages/Projects";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
 import Clients from "./pages/Clients";
+import ClientDetails from "./pages/ClientDetails";
+import EditClient from "./pages/EditClient";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
 
           {/* Clients */}
           <Route path="/clients" element={<Clients />} />
+            <Route path="/clients/:id" element={<ClientDetails />} />
+            <Route path="/clients/:id/edit" element={<EditClient />} />
 
         </Routes>
       </BrowserRouter>
