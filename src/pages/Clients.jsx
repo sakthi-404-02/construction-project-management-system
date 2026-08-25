@@ -2,107 +2,93 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Clients.css";
 
-const defaultClients = {
-    1: {
-        id: 1,
-        name: "Arun Kumar",
-        company: "Arun Builders",
-        phone: "+91 98765 43210",
-        email: "arunbuilders@gmail.com",
-        location: "Chennai",
-        projects: 2,
-        status: "Active",
-    },
-
-    2: {
-        id: 2,
-        name: "Ravi Enterprises",
-        company: "Ravi Enterprises",
-        phone: "+91 98765 12345",
-        email: "ravi@ravi-enterprises.com",
-        location: "Madurai",
-        projects: 3,
-        status: "Active",
-    },
-
-    3: {
-        id: 3,
-        name: "Karthik",
-        company: "Karthik Constructions",
-        phone: "+91 91234 56789",
-        email: "karthik@gmail.com",
-        location: "Coimbatore",
-        projects: 1,
-        status: "Inactive",
-    },
-};
-
 function Clients() {
     const navigate = useNavigate();
 
-    const [clients, setClients] = useState(() => {
-        const savedClients = localStorage.getItem("clients");
-
-        return savedClients
-            ? Object.values(JSON.parse(savedClients))
-            : Object.values(defaultClients);
-    });
-
     const [searchTerm, setSearchTerm] = useState("");
+    const [clients, setClients] = useState([]);
 
     useEffect(() => {
-        const handleStorageChange = () => {
-            const savedClients = localStorage.getItem("clients");
-
-            if (savedClients) {
-                setClients(Object.values(JSON.parse(savedClients)));
-            }
-        };
-
-        window.addEventListener("storage", handleStorageChange);
-
-        return () => {
-            window.removeEventListener(
-                "storage",
-                handleStorageChange
-            );
-        };
+        loadClients();
     }, []);
 
-    const filteredClients = clients.filter((client) => {
-        const search = searchTerm.toLowerCase();
+    const loadClients = () => {
+        const savedClients =
+            JSON.parse(
+                localStorage.getItem("clients")
+            ) || {};
 
-        return (
-            client.name.toLowerCase().includes(search) ||
-            client.company.toLowerCase().includes(search) ||
-            client.email.toLowerCase().includes(search) ||
-            client.location.toLowerCase().includes(search)
+        const clientList =
+            Object.values(savedClients);
+
+        setClients(clientList);
+    };
+
+    const filteredClients = clients.filter(
+        (client) => {
+            const search =
+                searchTerm.toLowerCase();
+
+            return (
+                client.name
+                    ?.toLowerCase()
+                    .includes(search) ||
+                client.company
+                    ?.toLowerCase()
+                    .includes(search) ||
+                client.email
+                    ?.toLowerCase()
+                    .includes(search) ||
+                client.location
+                    ?.toLowerCase()
+                    .includes(search)
+            );
+        }
+    );
+
+    const activeClients =
+        clients.filter(
+            (client) =>
+                client.status === "Active"
+        ).length;
+
+    const totalProjects =
+        clients.reduce(
+            (total, client) =>
+                total +
+                Number(client.projects || 0),
+            0
         );
-    });
 
     return (
         <div className="clients-page">
 
             {/* Header */}
+
             <div className="clients-header">
 
                 <div>
+
                     <p className="clients-label">
                         CLIENT MANAGEMENT
                     </p>
 
-                    <h1>Clients</h1>
+                    <h1>
+                        Clients
+                    </h1>
 
                     <p className="clients-description">
-                        Manage your construction project clients
-                        and their information.
+                        Manage your construction
+                        project clients and their
+                        information.
                     </p>
+
                 </div>
 
                 <button
                     className="add-client-btn"
                     onClick={() =>
-                        alert("Add Client feature coming soon")
+                        navigate("/clients/add")
                     }
                 >
                     + Add Client
@@ -111,53 +97,65 @@ function Clients() {
             </div>
 
             {/* Summary Cards */}
+
             <div className="clients-summary">
 
                 <div className="client-summary-card">
-                    <span>Total Clients</span>
-                    <strong>{clients.length}</strong>
+
+                    <span>
+                        Total Clients
+                    </span>
+
+                    <strong>
+                        {clients.length}
+                    </strong>
+
                 </div>
 
                 <div className="client-summary-card">
-                    <span>Active Clients</span>
+
+                    <span>
+                        Active Clients
+                    </span>
 
                     <strong>
-                        {
-                            clients.filter(
-                                (client) =>
-                                    client.status === "Active"
-                            ).length
-                        }
+                        {activeClients}
                     </strong>
+
                 </div>
 
                 <div className="client-summary-card">
-                    <span>Total Projects</span>
+
+                    <span>
+                        Total Projects
+                    </span>
 
                     <strong>
-                        {clients.reduce(
-                            (total, client) =>
-                                total + Number(client.projects || 0),
-                            0
-                        )}
+                        {totalProjects}
                     </strong>
+
                 </div>
 
             </div>
 
             {/* Search */}
+
             <div className="clients-search-section">
 
                 <div className="clients-search-box">
 
-                    <span>⌕</span>
+                    <span>
+                        ⌕
+                    </span>
 
                     <input
                         type="text"
                         placeholder="Search clients, company or location..."
                         value={searchTerm}
-                        onChange={(e) =>
-                            setSearchTerm(e.target.value)
+                        onChange={(event) =>
+                            setSearchTerm(
+                                event.target.value
+                            )
                         }
                     />
 
@@ -166,111 +164,184 @@ function Clients() {
             </div>
 
             {/* Client Table */}
+
             <div className="clients-table-container">
 
                 <table className="clients-table">
 
                     <thead>
+
                     <tr>
-                        <th>Client</th>
-                        <th>Company</th>
-                        <th>Contact</th>
-                        <th>Location</th>
-                        <th>Projects</th>
-                        <th>Status</th>
-                        <th>Action</th>
+
+                        <th>
+                            Client
+                        </th>
+
+                        <th>
+                            Company
+                        </th>
+
+                        <th>
+                            Contact
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Projects
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
                     </tr>
+
                     </thead>
 
                     <tbody>
 
-                    {filteredClients.length > 0 ? (
+                    {filteredClients.length >
+                    0 ? (
 
-                        filteredClients.map((client) => (
+                        filteredClients.map(
+                            (client) => (
 
-                            <tr key={client.id}>
+                                <tr
+                                    key={
+                                        client.id
+                                    }
+                                >
 
-                                <td>
+                                    {/* Client */}
 
-                                    <div className="client-name-cell">
+                                    <td>
 
-                                        <div className="client-avatar">
-                                            {client.name.charAt(0)}
+                                        <div className="client-name-cell">
+
+                                            <div className="client-avatar">
+
+                                                {client.name
+                                                    ?.charAt(
+                                                        0
+                                                    )
+                                                    .toUpperCase()}
+
+                                            </div>
+
+                                            <div>
+
+                                                <strong>
+                                                    {
+                                                        client.name
+                                                    }
+                                                </strong>
+
+                                                <small>
+                                                    {
+                                                        client.email
+                                                    }
+                                                </small>
+
+                                            </div>
+
                                         </div>
 
-                                        <div>
-                                            <strong>
-                                                {client.name}
-                                            </strong>
+                                    </td>
 
-                                            <small>
-                                                {client.email}
-                                            </small>
-                                        </div>
+                                    {/* Company */}
 
-                                    </div>
-
-                                </td>
-
-                                <td>
-                                    {client.company}
-                                </td>
-
-                                <td>
-                                    {client.phone}
-                                </td>
-
-                                <td>
-                                    {client.location}
-                                </td>
-
-                                <td>
-                                    <span className="project-count">
-                                        {client.projects}
-                                    </span>
-                                </td>
-
-                                <td>
-
-                                    <span
-                                        className={`client-status ${
-                                            client.status.toLowerCase()
-                                        }`}
-                                    >
-                                        {client.status}
-                                    </span>
-
-                                </td>
-
-                                <td>
-
-                                    <button
-                                        className="client-view-btn"
-                                        onClick={() =>
-                                            navigate(
-                                                `/clients/${client.id}`
-                                            )
+                                    <td>
+                                        {
+                                            client.company
                                         }
-                                    >
-                                        View
-                                    </button>
+                                    </td>
 
-                                    <button
-                                        className="client-edit-btn"
-                                        onClick={() =>
-                                            navigate(
-                                                `/clients/${client.id}/edit`
-                                            )
+                                    {/* Contact */}
+
+                                    <td>
+                                        {
+                                            client.phone
                                         }
-                                    >
-                                        Edit
-                                    </button>
+                                    </td>
 
-                                </td>
+                                    {/* Location */}
 
-                            </tr>
+                                    <td>
+                                        {
+                                            client.location
+                                        }
+                                    </td>
 
-                        ))
+                                    {/* Projects */}
+
+                                    <td>
+
+                                            <span className="project-count">
+                                                {
+                                                    client.projects ||
+                                                    0
+                                                }
+                                            </span>
+
+                                    </td>
+
+                                    {/* Status */}
+
+                                    <td>
+
+                                            <span
+                                                className={`client-status ${
+                                                    client.status?.toLowerCase() ||
+                                                    "active"
+                                                }`}
+                                            >
+                                                {
+                                                    client.status ||
+                                                    "Active"
+                                                }
+                                            </span>
+
+                                    </td>
+
+                                    {/* Actions */}
+
+                                    <td>
+
+                                        <button
+                                            className="client-view-btn"
+                                            onClick={() =>
+                                                navigate(
+                                                    `/clients/${client.id}`
+                                                )
+                                            }
+                                        >
+                                            View
+                                        </button>
+
+                                        <button
+                                            className="client-edit-btn"
+                                            onClick={() =>
+                                                navigate(
+                                                    `/clients/${client.id}/edit`
+                                                )
+                                            }
+                                        >
+                                            Edit
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            )
+                        )
 
                     ) : (
 

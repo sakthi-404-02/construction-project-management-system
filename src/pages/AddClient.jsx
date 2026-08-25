@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import "../styles/EditClient.css";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/AddClient.css";
 
-function EditClient() {
+function AddClient() {
     const navigate = useNavigate();
-    const { id } = useParams();
 
     const countries = [
         { name: "India", code: "+91", maxLength: 10 },
@@ -27,54 +26,11 @@ function EditClient() {
         location: "",
     });
 
-    const [loading, setLoading] = useState(true);
-
     const selectedCountry =
         countries.find(
             (country) =>
                 country.code === formData.phoneCode
         ) || countries[0];
-
-    useEffect(() => {
-        const savedClients =
-            JSON.parse(
-                localStorage.getItem("clients")
-            ) || {};
-
-        const client = savedClients[id];
-
-        if (client) {
-            let phone = client.phone || "";
-            let phoneCode = "+91";
-
-            const matchedCountry =
-                countries.find((country) =>
-                    phone.startsWith(country.code)
-                );
-
-            if (matchedCountry) {
-                phoneCode = matchedCountry.code;
-
-                phone = phone
-                    .replace(
-                        matchedCountry.code,
-                        ""
-                    )
-                    .trim();
-            }
-
-            setFormData({
-                name: client.name || "",
-                company: client.company || "",
-                phone: phone,
-                phoneCode: phoneCode,
-                email: client.email || "",
-                location: client.location || "",
-            });
-        }
-
-        setLoading(false);
-    }, [id]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -117,7 +73,7 @@ function EditClient() {
             selectedCountry.maxLength
         ) {
             alert(
-                "Please enter a valid phone number."
+                `Please enter a valid phone number.`
             );
             return;
         }
@@ -127,123 +83,103 @@ function EditClient() {
                 localStorage.getItem("clients")
             ) || {};
 
-        const existingClient =
-            savedClients[id];
+        const existingIds =
+            Object.keys(savedClients).map(Number);
 
-        if (!existingClient) {
-            alert("Client not found!");
-            return;
-        }
+        const newId =
+            existingIds.length > 0
+                ? Math.max(...existingIds) + 1
+                : 1;
 
-        savedClients[id] = {
-            ...existingClient,
-
+        const newClient = {
+            id: newId,
             name: formData.name,
-
             company: formData.company,
 
             phone: `${formData.phoneCode} ${formData.phone}`,
 
             email: formData.email,
-
             location: formData.location,
+            projects: 0,
+            status: "Active",
         };
+
+        savedClients[newId] = newClient;
 
         localStorage.setItem(
             "clients",
             JSON.stringify(savedClients)
         );
 
-        alert("Client updated successfully!");
+        alert("Client added successfully!");
 
-        navigate(`/clients/${id}`);
+        navigate("/clients");
     };
 
-    if (loading) {
-        return (
-            <div className="edit-client-page">
-                <h2>Loading client...</h2>
-            </div>
-        );
-    }
-
     return (
-        <div className="edit-client-page">
+        <div className="add-client-page">
 
             {/* Header */}
-
-            <div className="edit-client-header">
+            <div className="add-client-header">
 
                 <div>
-
-                    <p className="edit-label">
+                    <p className="add-client-label">
                         CLIENT MANAGEMENT
                     </p>
 
-                    <h1>
-                        Edit Client
-                    </h1>
+                    <h1>Add Client</h1>
 
                     <p>
-                        Update the client's
-                        information below.
+                        Add a new client to your
+                        construction project
+                        management system.
                     </p>
-
                 </div>
 
                 <button
                     type="button"
-                    className="edit-back-btn"
+                    className="add-client-back-btn"
                     onClick={() =>
-                        navigate(
-                            `/clients/${id}`
-                        )
+                        navigate("/clients")
                     }
                 >
-                    ← Back to Client
+                    ← Back to Clients
                 </button>
 
             </div>
 
             {/* Form */}
-
             <form
-                className="edit-client-form"
+                className="add-client-form"
                 onSubmit={handleSubmit}
             >
 
-                <div className="edit-form-section">
+                <div className="add-client-section">
 
-                    {/* Section Header */}
+                    <div className="add-section-title">
 
-                    <div className="edit-section-title">
-
-                        <div className="edit-number">
+                        <div className="add-number">
                             01
                         </div>
 
                         <div>
-
                             <h2>
                                 Client Information
                             </h2>
 
                             <p>
-                                Update basic client
-                                and contact details.
+                                Enter the client's basic
+                                information and contact
+                                details.
                             </p>
-
                         </div>
 
                     </div>
 
-                    {/* Form Grid */}
+                    <div className="add-client-grid">
 
-                    <div className="edit-form-grid">
-
-                        {/* Name */}
-
-                        <div className="edit-form-group">
+                        {/* Full Name */}
+                        <div className="add-form-group">
 
                             <label>
                                 Full Name
@@ -253,20 +189,16 @@ function EditClient() {
                             <input
                                 type="text"
                                 name="name"
-                                value={
-                                    formData.name
-                                }
-                                onChange={
-                                    handleChange
-                                }
+                                placeholder="Enter full name"
+                                value={formData.name}
+                                onChange={handleChange}
                                 required
                             />
 
                         </div>
 
                         {/* Company */}
-
-                        <div className="edit-form-group">
+                        <div className="add-form-group">
 
                             <label>
                                 Company Name
@@ -276,30 +208,27 @@ function EditClient() {
                             <input
                                 type="text"
                                 name="company"
-                                value={
-                                    formData.company
-                                }
-                                onChange={
-                                    handleChange
-                                }
+                                placeholder="Enter company name"
+                                value={formData.company}
+                                onChange={handleChange}
                                 required
                             />
 
                         </div>
 
                         {/* Phone */}
-
-                        <div className="edit-form-group">
+                        <div className="add-form-group">
 
                             <label>
                                 Phone Number
                                 <span>*</span>
                             </label>
 
-                            <div className="edit-phone-wrapper">
+                            <div className="phone-input-wrapper">
 
+                                {/* Country Code */}
                                 <select
-                                    className="edit-phone-code-select"
+                                    className="phone-code-select"
                                     value={
                                         formData.phoneCode
                                     }
@@ -307,7 +236,6 @@ function EditClient() {
                                         handleCountryCodeChange
                                     }
                                 >
-
                                     {countries.map(
                                         (country) => (
                                             <option
@@ -316,18 +244,14 @@ function EditClient() {
                                                     country.code
                                                 }
                                             >
-                                                {
-                                                    country.name
-                                                }{" "}
-                                                {
-                                                    country.code
-                                                }
+                                                {country.name}{" "}
+                                                {country.code}
                                             </option>
                                         )
                                     )}
-
                                 </select>
 
+                                {/* Phone Number */}
                                 <input
                                     type="tel"
                                     name="phone"
@@ -346,7 +270,7 @@ function EditClient() {
 
                             </div>
 
-                            <small>
+                            <small className="phone-help">
                                 {
                                     selectedCountry.maxLength
                                 }{" "}
@@ -356,8 +280,7 @@ function EditClient() {
                         </div>
 
                         {/* Email */}
-
-                        <div className="edit-form-group">
+                        <div className="add-form-group">
 
                             <label>
                                 Email Address
@@ -367,20 +290,16 @@ function EditClient() {
                             <input
                                 type="email"
                                 name="email"
-                                value={
-                                    formData.email
-                                }
-                                onChange={
-                                    handleChange
-                                }
+                                placeholder="example@email.com"
+                                value={formData.email}
+                                onChange={handleChange}
                                 required
                             />
 
                         </div>
 
                         {/* Location */}
-
-                        <div className="edit-form-group">
+                        <div className="add-form-group">
 
                             <label>
                                 Location
@@ -390,12 +309,11 @@ function EditClient() {
                             <input
                                 type="text"
                                 name="location"
+                                placeholder="Enter city / location"
                                 value={
                                     formData.location
                                 }
-                                onChange={
-                                    handleChange
-                                }
+                                onChange={handleChange}
                                 required
                             />
 
@@ -406,16 +324,13 @@ function EditClient() {
                 </div>
 
                 {/* Footer */}
-
-                <div className="edit-form-footer">
+                <div className="add-client-footer">
 
                     <button
                         type="button"
-                        className="edit-cancel-btn"
+                        className="add-cancel-btn"
                         onClick={() =>
-                            navigate(
-                                `/clients/${id}`
-                            )
+                            navigate("/clients")
                         }
                     >
                         Cancel
@@ -423,9 +338,9 @@ function EditClient() {
 
                     <button
                         type="submit"
-                        className="edit-save-btn"
+                        className="add-save-btn"
                     >
-                        Save Changes
+                        Add Client
                     </button>
 
                 </div>
@@ -436,4 +351,4 @@ function EditClient() {
     );
 }
 
-export default EditClient;
+export default AddClient;

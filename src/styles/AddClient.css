@@ -1,4 +1,4 @@
-.edit-client-page {
+.add-client-page {
     min-height: 100vh;
     padding: 40px;
     background: #f6f8fb;
@@ -7,39 +7,48 @@
 
 /* Header */
 
-.edit-client-header {
+.add-client-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 30px;
 }
 
-.edit-label {
+.add-client-label {
     margin: 0 0 8px;
+
     font-size: 12px;
     font-weight: 700;
+
     letter-spacing: 1.5px;
+
     color: #64748b;
 }
 
-.edit-client-header h1 {
+.add-client-header h1 {
     margin: 0;
+
     font-size: 32px;
     font-weight: 700;
+
     color: #111827;
 }
 
-.edit-client-header p:last-child {
+.add-client-header p:last-child {
     margin-top: 8px;
+
     color: #64748b;
+
     font-size: 15px;
 }
 
 /* Back Button */
 
-.edit-back-btn {
+.add-client-back-btn {
     border: 1px solid #dbe1e8;
+
     background: #ffffff;
+
     color: #334155;
 
     padding: 11px 18px;
@@ -54,21 +63,23 @@
     transition: 0.2s;
 }
 
-.edit-back-btn:hover {
+.add-client-back-btn:hover {
     background: #f1f5f9;
 }
 
 /* Form */
 
-.edit-client-form {
+.add-client-form {
     max-width: 1000px;
+
     margin: 0 auto;
 }
 
-.edit-form-section {
+.add-client-section {
     background: #ffffff;
 
     border: 1px solid #e5e7eb;
+
     border-radius: 14px;
 
     padding: 30px;
@@ -79,8 +90,9 @@
 
 /* Section Header */
 
-.edit-section-title {
+.add-section-title {
     display: flex;
+
     align-items: center;
 
     gap: 15px;
@@ -92,12 +104,14 @@
     margin-bottom: 28px;
 }
 
-.edit-number {
+.add-number {
     width: 42px;
     height: 42px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 10px;
@@ -107,10 +121,11 @@
     color: #4f46e5;
 
     font-size: 14px;
+
     font-weight: 700;
 }
 
-.edit-section-title h2 {
+.add-section-title h2 {
     margin: 0;
 
     font-size: 20px;
@@ -118,7 +133,7 @@
     color: #1f2937;
 }
 
-.edit-section-title p {
+.add-section-title p {
     margin: 5px 0 0;
 
     color: #64748b;
@@ -128,7 +143,7 @@
 
 /* Form Grid */
 
-.edit-form-grid {
+.add-client-grid {
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -136,18 +151,15 @@
     gap: 22px;
 }
 
-.edit-form-group {
+.add-form-group {
     display: flex;
-    flex-direction: column;
-}
 
-.edit-form-group.full-width {
-    grid-column: 1 / -1;
+    flex-direction: column;
 }
 
 /* Labels */
 
-.edit-form-group label {
+.add-form-group label {
     margin-bottom: 8px;
 
     font-size: 14px;
@@ -157,13 +169,13 @@
     color: #334155;
 }
 
-.edit-form-group label span {
+.add-form-group label span {
     color: #dc2626;
 }
 
-/* Normal Inputs */
+/* Inputs */
 
-.edit-form-group input {
+.add-form-group input {
     width: 100%;
 
     box-sizing: border-box;
@@ -182,37 +194,31 @@
 
     color: #111827;
 
-    background-color: #ffffff;
+    background: #ffffff;
 
     transition: 0.2s;
 }
 
-.edit-form-group input:hover {
+.add-form-group input:hover {
     border-color: #b8c0cc;
 }
 
-.edit-form-group input:focus {
+.add-form-group input:focus {
     border-color: #6366f1;
-
-    color: #111827;
-
-    background-color: #ffffff;
 
     box-shadow:
             0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-.edit-form-group input::placeholder {
+.add-form-group input::placeholder {
     color: #94a3b8;
-
-    opacity: 1;
 }
 
 /* =========================
    PHONE NUMBER
    ========================= */
 
-.edit-phone-wrapper {
+.phone-input-wrapper {
     display: flex;
 
     width: 100%;
@@ -220,8 +226,9 @@
 
 /* Small Country Code Box */
 
-.edit-phone-code-select {
+.phone-code-select {
     width: 95px;
+
     min-width: 95px;
 
     padding: 13px 8px;
@@ -247,11 +254,11 @@
     transition: 0.2s;
 }
 
-.edit-phone-code-select:hover {
+.phone-code-select:hover {
     background: #f1f5f9;
 }
 
-.edit-phone-code-select:focus {
+.phone-code-select:focus {
     border-color: #6366f1;
 
     background: #ffffff;
@@ -259,7 +266,7 @@
 
 /* Big Phone Number Box */
 
-.edit-phone-wrapper input {
+.phone-input-wrapper input {
     flex: 1;
 
     width: 100%;
@@ -281,24 +288,18 @@
     color: #111827;
 
     background: #ffffff;
-
-    transition: 0.2s;
 }
 
-.edit-phone-wrapper input:hover {
-    border-color: #b8c0cc;
-}
-
-.edit-phone-wrapper input:focus {
+.phone-input-wrapper input:focus {
     border-color: #6366f1;
 
     box-shadow:
             0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-/* Phone Help Text */
+/* Phone Help */
 
-.edit-form-group small {
+.phone-help {
     margin-top: 6px;
 
     color: #64748b;
@@ -308,7 +309,7 @@
 
 /* Footer */
 
-.edit-form-footer {
+.add-client-footer {
     display: flex;
 
     justify-content: flex-end;
@@ -318,38 +319,18 @@
     margin-top: 20px;
 }
 
-/* Cancel Button */
+/* Cancel */
 
-.edit-cancel-btn {
+.add-cancel-btn {
     padding: 12px 22px;
 
     border-radius: 8px;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    background: #ffffff;
 
     border: 1px solid #dbe1e8;
 
+    background: #ffffff;
+
     color: #475569;
-
-    transition: 0.2s;
-}
-
-.edit-cancel-btn:hover {
-    background: #f1f5f9;
-}
-
-/* Save Button */
-
-.edit-save-btn {
-    padding: 12px 22px;
-
-    border-radius: 8px;
 
     font-size: 14px;
 
@@ -357,16 +338,36 @@
 
     cursor: pointer;
 
-    background: #4f46e5;
+    transition: 0.2s;
+}
+
+.add-cancel-btn:hover {
+    background: #f1f5f9;
+}
+
+/* Save */
+
+.add-save-btn {
+    padding: 12px 22px;
+
+    border-radius: 8px;
 
     border: 1px solid #4f46e5;
 
+    background: #4f46e5;
+
     color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
 
     transition: 0.2s;
 }
 
-.edit-save-btn:hover {
+.add-save-btn:hover {
     background: #4338ca;
 }
 
@@ -374,39 +375,36 @@
 
 @media (max-width: 700px) {
 
-    .edit-client-page {
+    .add-client-page {
         padding: 20px;
     }
 
-    .edit-client-header {
+    .add-client-header {
         flex-direction: column;
 
         gap: 20px;
     }
 
-    .edit-form-grid {
+    .add-client-grid {
         grid-template-columns: 1fr;
     }
 
-    .edit-form-group.full-width {
-        grid-column: auto;
-    }
-
-    .edit-form-section {
+    .add-client-section {
         padding: 20px;
     }
 
-    .edit-form-footer {
+    .add-client-footer {
         flex-direction: column;
     }
 
-    .edit-cancel-btn,
-    .edit-save-btn {
+    .add-cancel-btn,
+    .add-save-btn {
         width: 100%;
     }
 
-    .edit-phone-code-select {
+    .phone-code-select {
         width: 95px;
+
         min-width: 95px;
     }
 }
