@@ -9,57 +9,97 @@ import AddClient from "./pages/AddClient";
 import ClientDetails from "./pages/ClientDetails";
 import EditClient from "./pages/EditClient";
 
+import Expenses from "./pages/Expenses";
+import Payments from "./pages/Payments";
+import Reports from "./pages/Reports";
+
 function App() {
     return (
         <BrowserRouter>
             <Routes>
 
-                {/* Default Page */}
+                {/* =========================
+                    DEFAULT PAGE
+                ========================= */}
+
                 <Route
                     path="/"
                     element={<Projects />}
                 />
 
-                {/* Projects */}
+
+                {/* =========================
+                    PROJECTS
+                ========================= */}
+
                 <Route
                     path="/projects"
                     element={<Projects />}
                 />
 
-                {/* Add Project */}
                 <Route
                     path="/projects/add"
                     element={<AddProject />}
                 />
 
-                {/* Project Details */}
                 <Route
                     path="/projects/:id"
                     element={<ProjectDetails />}
                 />
 
-                {/* Clients */}
+
+                {/* =========================
+                    CLIENTS
+                ========================= */}
+
                 <Route
                     path="/clients"
                     element={<Clients />}
                 />
 
-                {/* Add Client */}
                 <Route
                     path="/clients/add"
                     element={<AddClient />}
                 />
 
-                {/* Client Details */}
                 <Route
                     path="/clients/:id"
                     element={<ClientDetails />}
                 />
 
-                {/* Edit Client */}
                 <Route
                     path="/clients/:id/edit"
                     element={<EditClient />}
+                />
+
+
+                {/* =========================
+                    MEMBER 4 - EXPENSES
+                ========================= */}
+
+                <Route
+                    path="/expenses"
+                    element={<Expenses />}
+                />
+
+
+                {/* =========================
+                    MEMBER 4 - PAYMENTS
+                ========================= */}
+
+                <Route
+                    path="/payments"
+                    element={<Payments />}
+                />
+
+
+                {/* =========================
+                    MEMBER 4 - REPORTS
+                ========================= */}
+
+                <Route
+                    path="/reports"
+                    element={<Reports />}
                 />
 
             </Routes>
