@@ -1,64 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Clients.css";
+import clientsData from "../data/clients.js";
 
 function Clients() {
     const navigate = useNavigate();
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [clients, setClients] = useState([]);
 
-    useEffect(() => {
-        loadClients();
-    }, []);
+    const clients = clientsData;
 
-    const loadClients = () => {
-        const savedClients =
-            JSON.parse(
-                localStorage.getItem("clients")
-            ) || {};
+    const filteredClients = clients.filter((client) => {
+        const search = searchTerm.toLowerCase();
 
-        const clientList =
-            Object.values(savedClients);
-
-        setClients(clientList);
-    };
-
-    const filteredClients = clients.filter(
-        (client) => {
-            const search =
-                searchTerm.toLowerCase();
-
-            return (
-                client.name
-                    ?.toLowerCase()
-                    .includes(search) ||
-                client.company
-                    ?.toLowerCase()
-                    .includes(search) ||
-                client.email
-                    ?.toLowerCase()
-                    .includes(search) ||
-                client.location
-                    ?.toLowerCase()
-                    .includes(search)
-            );
-        }
-    );
-
-    const activeClients =
-        clients.filter(
-            (client) =>
-                client.status === "Active"
-        ).length;
-
-    const totalProjects =
-        clients.reduce(
-            (total, client) =>
-                total +
-                Number(client.projects || 0),
-            0
+        return (
+            client.name?.toLowerCase().includes(search) ||
+            client.company?.toLowerCase().includes(search) ||
+            client.email?.toLowerCase().includes(search) ||
+            client.location?.toLowerCase().includes(search)
         );
+    });
+
+    const activeClients = clients.filter(
+        (client) => client.status === "Active"
+    ).length;
+
+    const totalProjects = clients.reduce(
+        (total, client) => total + Number(client.projects || 0),
+        0
+    );
 
     return (
         <div className="clients-page">
@@ -68,28 +38,20 @@ function Clients() {
             <div className="clients-header">
 
                 <div>
-
                     <p className="clients-label">
                         CLIENT MANAGEMENT
                     </p>
 
-                    <h1>
-                        Clients
-                    </h1>
+                    <h1>Clients</h1>
 
                     <p className="clients-description">
-                        Manage your construction
-                        project clients and their
-                        information.
+                        Manage your construction project clients and their information.
                     </p>
-
                 </div>
 
                 <button
                     className="add-client-btn"
-                    onClick={() =>
-                        navigate("/clients/add")
-                    }
+                    onClick={() => navigate("/clients/add")}
                 >
                     + Add Client
                 </button>
@@ -101,39 +63,18 @@ function Clients() {
             <div className="clients-summary">
 
                 <div className="client-summary-card">
-
-                    <span>
-                        Total Clients
-                    </span>
-
-                    <strong>
-                        {clients.length}
-                    </strong>
-
+                    <span>Total Clients</span>
+                    <strong>{clients.length}</strong>
                 </div>
 
                 <div className="client-summary-card">
-
-                    <span>
-                        Active Clients
-                    </span>
-
-                    <strong>
-                        {activeClients}
-                    </strong>
-
+                    <span>Active Clients</span>
+                    <strong>{activeClients}</strong>
                 </div>
 
                 <div className="client-summary-card">
-
-                    <span>
-                        Total Projects
-                    </span>
-
-                    <strong>
-                        {totalProjects}
-                    </strong>
-
+                    <span>Total Projects</span>
+                    <strong>{totalProjects}</strong>
                 </div>
 
             </div>
@@ -144,18 +85,14 @@ function Clients() {
 
                 <div className="clients-search-box">
 
-                    <span>
-                        ⌕
-                    </span>
+                    <span>⌕</span>
 
                     <input
                         type="text"
                         placeholder="Search clients, company or location..."
                         value={searchTerm}
                         onChange={(event) =>
-                            setSearchTerm(
-                                event.target.value
-                            )
+                            setSearchTerm(event.target.value)
                         }
                     />
 
@@ -170,190 +107,128 @@ function Clients() {
                 <table className="clients-table">
 
                     <thead>
-
                     <tr>
-
-                        <th>
-                            Client
-                        </th>
-
-                        <th>
-                            Company
-                        </th>
-
-                        <th>
-                            Contact
-                        </th>
-
-                        <th>
-                            Location
-                        </th>
-
-                        <th>
-                            Projects
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
+                        <th>Client</th>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Location</th>
+                        <th>Projects</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
-
                     </thead>
 
                     <tbody>
 
-                    {filteredClients.length >
-                    0 ? (
+                    {filteredClients.length > 0 ? (
 
-                        filteredClients.map(
-                            (client) => (
+                        filteredClients.map((client) => (
 
-                                <tr
-                                    key={
-                                        client.id
-                                    }
-                                >
+                            <tr key={client.id}>
 
-                                    {/* Client */}
+                                {/* Client */}
 
-                                    <td>
+                                <td>
+                                    <div className="client-name-cell">
 
-                                        <div className="client-name-cell">
-
-                                            <div className="client-avatar">
-
-                                                {client.name
-                                                    ?.charAt(
-                                                        0
-                                                    )
-                                                    .toUpperCase()}
-
-                                            </div>
-
-                                            <div>
-
-                                                <strong>
-                                                    {
-                                                        client.name
-                                                    }
-                                                </strong>
-
-                                                <small>
-                                                    {
-                                                        client.email
-                                                    }
-                                                </small>
-
-                                            </div>
-
+                                        <div className="client-avatar">
+                                            {client.name
+                                                ?.charAt(0)
+                                                .toUpperCase()}
                                         </div>
 
-                                    </td>
+                                        <div>
+                                            <strong>
+                                                {client.name}
+                                            </strong>
 
-                                    {/* Company */}
+                                            <small>
+                                                {client.email}
+                                            </small>
+                                        </div>
 
-                                    <td>
-                                        {
-                                            client.company
+                                    </div>
+                                </td>
+
+                                {/* Company */}
+
+                                <td>
+                                    {client.company}
+                                </td>
+
+                                {/* Contact */}
+
+                                <td>
+                                    {client.phone}
+                                </td>
+
+                                {/* Location */}
+
+                                <td>
+                                    {client.location}
+                                </td>
+
+                                {/* Projects */}
+
+                                <td>
+                                    <span className="project-count">
+                                        {client.projects || 0}
+                                    </span>
+                                </td>
+
+                                {/* Status */}
+
+                                <td>
+                                    <span
+                                        className={`client-status ${
+                                            client.status?.toLowerCase() || "active"
+                                        }`}
+                                    >
+                                        {client.status || "Active"}
+                                    </span>
+                                </td>
+
+                                {/* Actions */}
+
+                                <td>
+
+                                    <button
+                                        className="client-view-btn"
+                                        onClick={() =>
+                                            navigate(
+                                                `/clients/${client.id}`
+                                            )
                                         }
-                                    </td>
+                                    >
+                                        View
+                                    </button>
 
-                                    {/* Contact */}
-
-                                    <td>
-                                        {
-                                            client.phone
+                                    <button
+                                        className="client-edit-btn"
+                                        onClick={() =>
+                                            navigate(
+                                                `/clients/${client.id}/edit`
+                                            )
                                         }
-                                    </td>
+                                    >
+                                        Edit
+                                    </button>
 
-                                    {/* Location */}
+                                </td>
 
-                                    <td>
-                                        {
-                                            client.location
-                                        }
-                                    </td>
+                            </tr>
 
-                                    {/* Projects */}
-
-                                    <td>
-
-                                            <span className="project-count">
-                                                {
-                                                    client.projects ||
-                                                    0
-                                                }
-                                            </span>
-
-                                    </td>
-
-                                    {/* Status */}
-
-                                    <td>
-
-                                            <span
-                                                className={`client-status ${
-                                                    client.status?.toLowerCase() ||
-                                                    "active"
-                                                }`}
-                                            >
-                                                {
-                                                    client.status ||
-                                                    "Active"
-                                                }
-                                            </span>
-
-                                    </td>
-
-                                    {/* Actions */}
-
-                                    <td>
-
-                                        <button
-                                            className="client-view-btn"
-                                            onClick={() =>
-                                                navigate(
-                                                    `/clients/${client.id}`
-                                                )
-                                            }
-                                        >
-                                            View
-                                        </button>
-
-                                        <button
-                                            className="client-edit-btn"
-                                            onClick={() =>
-                                                navigate(
-                                                    `/clients/${client.id}/edit`
-                                                )
-                                            }
-                                        >
-                                            Edit
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-                            )
-                        )
+                        ))
 
                     ) : (
 
                         <tr>
-
                             <td
                                 colSpan="7"
                                 className="no-clients"
                             >
                                 No clients found
                             </td>
-
                         </tr>
 
                     )}

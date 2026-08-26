@@ -1,0 +1,447 @@
+/* =========================
+   EDIT EMPLOYEE PAGE
+========================= */
+
+.edit-employee-page {
+    min-height: 100vh;
+
+    padding: 32px;
+
+    background: #f8fafc;
+
+    color: #172033;
+
+    box-sizing: border-box;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.edit-employee-header {
+    max-width: 1150px;
+
+    margin: 0 auto 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.edit-employee-label {
+    margin: 0 0 7px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.edit-employee-header h1 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 32px;
+
+    font-weight: 700;
+}
+
+.edit-employee-description {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.edit-employee-back-btn {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.edit-employee-back-btn:hover {
+    background: #dbeafe;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.edit-employee-form {
+    max-width: 1150px;
+
+    margin: 0 auto;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.edit-employee-card {
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+            0 3px 12px rgba(15, 23, 42, 0.05);
+
+    margin-bottom: 18px;
+}
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.edit-employee-card-title {
+    margin-bottom: 25px;
+}
+
+.edit-employee-card-title h2 {
+    margin: 0 0 5px;
+
+    color: #1e293b;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.edit-employee-card-title span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.edit-employee-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+/* =========================
+   GROUP
+========================= */
+
+.edit-employee-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.edit-employee-group label {
+    color: #334155;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.edit-employee-group label span {
+    color: #ef4444;
+
+    margin-left: 3px;
+}
+
+/* =========================
+   NORMAL INPUT
+========================= */
+
+.edit-employee-group > input,
+.edit-employee-group > select {
+    width: 100%;
+
+    height: 44px;
+
+    box-sizing: border-box;
+
+    padding: 0 13px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.edit-employee-group > input:focus,
+.edit-employee-group > select:focus {
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow:
+            0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================
+   CUSTOM DATE BOX
+========================= */
+
+.custom-date-box {
+    position: relative;
+
+    width: 100%;
+
+    height: 44px;
+}
+
+/* Date input */
+
+.custom-date-box input[type="date"] {
+    width: 100%;
+
+    height: 44px;
+
+    box-sizing: border-box;
+
+    padding: 0 48px 0 13px;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    font-size: 13px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+/* Focus */
+
+.custom-date-box input[type="date"]:focus {
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow:
+            0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* =========================
+   CUSTOM 📅 ICON
+========================= */
+
+.custom-calendar-icon {
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 22px;
+
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+/* =========================
+   HIDE NATIVE ICON
+========================= */
+
+.custom-date-box
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    width: 48px;
+
+    height: 44px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.edit-employee-footer {
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.edit-employee-cancel-btn,
+.edit-employee-save-btn,
+.edit-employee-primary-btn {
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.edit-employee-cancel-btn {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+.edit-employee-cancel-btn:hover {
+    background: #e2e8f0;
+}
+
+.edit-employee-save-btn {
+    background: #2563eb;
+
+    color: white;
+}
+
+.edit-employee-save-btn:hover {
+    background: #1d4ed8;
+}
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.not-found-card {
+    max-width: 1150px;
+
+    margin: 0 auto;
+}
+
+.not-found-card h2 {
+    margin-top: 0;
+
+    color: #111827;
+}
+
+.not-found-card p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.edit-employee-primary-btn {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.edit-employee-primary-btn:hover {
+    background: #dbeafe;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .edit-employee-page {
+        padding: 20px;
+    }
+
+    .edit-employee-header {
+        flex-direction: column;
+    }
+
+    .edit-employee-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-employee-footer {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .edit-employee-cancel-btn,
+    .edit-employee-save-btn {
+        width: 100%;
+    }
+}

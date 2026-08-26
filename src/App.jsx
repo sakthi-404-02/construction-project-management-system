@@ -3,66 +3,124 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Projects from "./pages/Projects";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
+import EditProject from "./pages/EditProject";
 
 import Clients from "./pages/Clients";
 import AddClient from "./pages/AddClient";
 import ClientDetails from "./pages/ClientDetails";
 import EditClient from "./pages/EditClient";
 
+import Employees from "./pages/Employees";
+import AddEmployee from "./pages/AddEmployee";
+import EmployeeDetails from "./pages/EmployeeDetails";
+import EditEmployee from "./pages/EditEmployee";
+
+import Materials from "./pages/Materials";
+import AddMaterial from "./pages/AddMaterial";
+
 function App() {
     return (
         <BrowserRouter>
+
             <Routes>
 
-                {/* Default Page */}
+                {/* =========================
+                    DEFAULT
+                ========================= */}
+
                 <Route
                     path="/"
                     element={<Projects />}
                 />
 
-                {/* Projects */}
+                {/* =========================
+                    PROJECTS
+                ========================= */}
+
                 <Route
                     path="/projects"
                     element={<Projects />}
                 />
 
-                {/* Add Project */}
                 <Route
                     path="/projects/add"
                     element={<AddProject />}
                 />
 
-                {/* Project Details */}
                 <Route
                     path="/projects/:id"
                     element={<ProjectDetails />}
                 />
 
-                {/* Clients */}
+                <Route
+                    path="/projects/:id/edit"
+                    element={<EditProject />}
+                />
+
+                {/* =========================
+                    CLIENTS
+                ========================= */}
+
                 <Route
                     path="/clients"
                     element={<Clients />}
                 />
 
-                {/* Add Client */}
                 <Route
                     path="/clients/add"
                     element={<AddClient />}
                 />
 
-                {/* Client Details */}
                 <Route
                     path="/clients/:id"
                     element={<ClientDetails />}
                 />
 
-                {/* Edit Client */}
                 <Route
                     path="/clients/:id/edit"
                     element={<EditClient />}
                 />
 
+                {/* =========================
+                    EMPLOYEES
+                ========================= */}
+
+                <Route
+                    path="/employees"
+                    element={<Employees />}
+                />
+
+                <Route
+                    path="/employees/add"
+                    element={<AddEmployee />}
+                />
+
+                <Route
+                    path="/employees/:id"
+                    element={<EmployeeDetails />}
+                />
+
+                <Route
+                    path="/employees/:id/edit"
+                    element={<EditEmployee />}
+                />
+
+                {/* =========================
+                    MATERIALS
+                ========================= */}
+
+                <Route
+                    path="/materials"
+                    element={<Materials />}
+                />
+
+                <Route
+                    path="/materials/add"
+                    element={<AddMaterial />}
+                />
+
             </Routes>
+
         </BrowserRouter>
     );
 }

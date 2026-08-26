@@ -1,0 +1,304 @@
+/* =========================
+   EMPLOYEE DETAILS PAGE
+========================= */
+
+.employee-details-page {
+    min-height: 100vh;
+    padding: 32px;
+    background: #f8fafc;
+    color: #172033;
+    box-sizing: border-box;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.employee-details-header {
+    max-width: 1150px;
+    margin: 0 auto 28px;
+}
+
+.employee-back-btn {
+    border: none;
+
+    background: transparent;
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    padding: 0;
+    margin-bottom: 22px;
+
+    transition: 0.2s;
+}
+
+.employee-back-btn:hover {
+    color: #2563eb;
+}
+
+.employee-title-section {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.employee-details-label {
+    margin: 0 0 7px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.employee-title-section h1 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.employee-role {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.employee-details-status {
+    display: inline-flex;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.employee-details-status.active {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.employee-details-status.inactive {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.employee-details-card {
+    max-width: 1150px;
+
+    margin: 0 auto 18px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+            0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.employee-card-title {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 24px;
+}
+
+.employee-card-title h2 {
+    margin: 0;
+
+    color: #1e293b;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.employee-card-title span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+/* =========================
+   INFORMATION GRID
+========================= */
+
+.employee-info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 0;
+}
+
+.employee-info-item {
+    padding: 18px 10px;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.employee-info-item:nth-child(odd) {
+    padding-left: 0;
+    padding-right: 25px;
+}
+
+.employee-info-item:nth-child(even) {
+    padding-left: 25px;
+    padding-right: 0;
+}
+
+.employee-info-item span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+.employee-info-item strong {
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.employee-action-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.employee-primary-btn,
+.employee-edit-action-btn {
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.employee-primary-btn {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.employee-primary-btn:hover {
+    background: #dbeafe;
+}
+
+.employee-edit-action-btn {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.employee-edit-action-btn:hover {
+    background: #ffedd5;
+}
+
+/* =========================
+   NOT FOUND
+========================= */
+
+.employee-details-card h2 {
+    color: #1e293b;
+}
+
+.employee-details-card p {
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .employee-details-page {
+        padding: 20px;
+    }
+
+    .employee-title-section {
+        flex-direction: column;
+    }
+
+    .employee-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .employee-info-item:nth-child(odd),
+    .employee-info-item:nth-child(even) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .employee-card-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .employee-action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .employee-primary-btn,
+    .employee-edit-action-btn {
+        width: 100%;
+    }
+}

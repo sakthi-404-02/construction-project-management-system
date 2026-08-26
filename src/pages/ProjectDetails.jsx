@@ -13,7 +13,7 @@ function ProjectDetails() {
             client: "Arun Kumar",
             location: "Chennai",
             startDate: "10 Aug 2026",
-            endDate: "10 Feb 2027",
+            endDate: "",
             budget: "₹25,00,000",
             status: "Ongoing",
             progress: 65,
@@ -26,7 +26,7 @@ function ProjectDetails() {
             client: "Ravi Enterprises",
             location: "Madurai",
             startDate: "01 Jul 2026",
-            endDate: "01 Jan 2027",
+            endDate: "",
             budget: "₹45,00,000",
             status: "Ongoing",
             progress: 40,
@@ -55,7 +55,6 @@ function ProjectDetails() {
     if (!project) {
         return (
             <div className="project-details-page">
-
                 <div className="details-card">
                     <h2>Project Not Found</h2>
 
@@ -70,7 +69,6 @@ function ProjectDetails() {
                         ← Back to Projects
                     </button>
                 </div>
-
             </div>
         );
     }
@@ -78,7 +76,6 @@ function ProjectDetails() {
     return (
         <div className="project-details-page">
 
-            {/* Header */}
             <div className="details-top">
 
                 <button
@@ -96,7 +93,9 @@ function ProjectDetails() {
                             PROJECT #{project.id}
                         </p>
 
-                        <h1>{project.name}</h1>
+                        <h1>
+                            {project.name}
+                        </h1>
 
                         <p className="details-location">
                             📍 {project.location}
@@ -109,17 +108,15 @@ function ProjectDetails() {
                             project.status.toLowerCase()
                         }`}
                     >
-            {project.status}
-          </span>
+                        {project.status}
+                    </span>
 
                 </div>
 
             </div>
 
-            {/* Main Grid */}
             <div className="details-main-grid">
 
-                {/* Overview */}
                 <div className="details-card overview-card">
 
                     <div className="card-title">
@@ -146,7 +143,12 @@ function ProjectDetails() {
 
                         <div className="info-item">
                             <span>End Date</span>
-                            <strong>{project.endDate}</strong>
+
+                            <strong>
+                                {project.status === "Ongoing"
+                                    ? "-----"
+                                    : project.endDate}
+                            </strong>
                         </div>
 
                         <div className="info-item">
@@ -156,6 +158,7 @@ function ProjectDetails() {
 
                         <div className="info-item">
                             <span>Current Status</span>
+
                             <strong
                                 className={
                                     project.status === "Completed"
@@ -171,7 +174,6 @@ function ProjectDetails() {
 
                 </div>
 
-                {/* Progress */}
                 <div className="details-card progress-card">
 
                     <div className="card-title">
@@ -182,7 +184,9 @@ function ProjectDetails() {
                     <div className="progress-content">
 
                         <div className="progress-circle">
-                            <span>{project.progress}%</span>
+                            <span>
+                                {project.progress}%
+                            </span>
                         </div>
 
                         <div className="progress-info">
@@ -214,12 +218,18 @@ function ProjectDetails() {
 
             </div>
 
-            {/* Description */}
             <div className="details-card description-card">
 
                 <div className="card-title">
-                    <h2>Project Description</h2>
-                    <span>Project overview and notes</span>
+
+                    <h2>
+                        Project Description
+                    </h2>
+
+                    <span>
+                        Project overview and notes
+                    </span>
+
                 </div>
 
                 <p className="description-text">
@@ -228,12 +238,18 @@ function ProjectDetails() {
 
             </div>
 
-            {/* Quick Actions */}
             <div className="details-card actions-card">
 
                 <div className="card-title">
-                    <h2>Quick Actions</h2>
-                    <span>Manage this project</span>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                    <span>
+                        Manage this project
+                    </span>
+
                 </div>
 
                 <div className="action-buttons">
@@ -248,8 +264,8 @@ function ProjectDetails() {
                     <button
                         className="action-secondary"
                         onClick={() =>
-                            alert(
-                                `Edit ${project.name} feature coming soon`
+                            navigate(
+                                `/projects/${project.id}/edit`
                             )
                         }
                     >

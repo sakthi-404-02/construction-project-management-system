@@ -15,7 +15,7 @@ function Projects() {
             client: "Arun Kumar",
             location: "Chennai",
             startDate: "10-08-2026",
-            endDate: "10-02-2027",
+            endDate: "",
             status: "Ongoing",
         },
         {
@@ -24,7 +24,7 @@ function Projects() {
             client: "Ravi Enterprises",
             location: "Madurai",
             startDate: "01-07-2026",
-            endDate: "01-01-2027",
+            endDate: "",
             status: "Ongoing",
         },
         {
@@ -57,79 +57,113 @@ function Projects() {
         <div className="projects-page">
 
             {/* Header */}
+
             <div className="projects-header">
+
                 <div>
                     <h1>Projects</h1>
-                    <p>Manage and track all construction projects</p>
+
+                    <p>
+                        Manage and track all construction projects
+                    </p>
                 </div>
 
                 <button
                     className="add-project-btn"
-                    onClick={() => navigate("/projects/add")}
+                    onClick={() =>
+                        navigate("/projects/add")
+                    }
                 >
                     + Add Project
                 </button>
+
             </div>
 
             {/* Summary Cards */}
+
             <div className="project-summary">
 
                 <div className="summary-card">
                     <h3>Total Projects</h3>
-                    <span>{projects.length}</span>
+
+                    <span>
+                        {projects.length}
+                    </span>
                 </div>
 
                 <div className="summary-card">
                     <h3>Ongoing</h3>
+
                     <span>
-            {
-                projects.filter(
-                    (project) => project.status === "Ongoing"
-                ).length
-            }
-          </span>
+                        {
+                            projects.filter(
+                                (project) =>
+                                    project.status === "Ongoing"
+                            ).length
+                        }
+                    </span>
                 </div>
 
                 <div className="summary-card">
                     <h3>Completed</h3>
+
                     <span>
-            {
-                projects.filter(
-                    (project) => project.status === "Completed"
-                ).length
-            }
-          </span>
+                        {
+                            projects.filter(
+                                (project) =>
+                                    project.status === "Completed"
+                            ).length
+                        }
+                    </span>
                 </div>
 
             </div>
 
             {/* Search and Filter */}
+
             <div className="project-search-filter">
 
                 <div className="project-search-box">
-                    <span className="search-icon">⌕</span>
+
+                    <span className="search-icon">
+                        ⌕
+                    </span>
 
                     <input
                         type="text"
                         placeholder="Search projects, clients or locations..."
                         value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onChange={(e) =>
+                            setSearchTerm(e.target.value)
+                        }
                     />
+
                 </div>
 
                 <select
                     className="project-status-filter"
                     value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
+                    onChange={(e) =>
+                        setStatusFilter(e.target.value)
+                    }
                 >
-                    <option value="All">All Status</option>
-                    <option value="Ongoing">Ongoing</option>
-                    <option value="Completed">Completed</option>
+                    <option value="All">
+                        All Status
+                    </option>
+
+                    <option value="Ongoing">
+                        Ongoing
+                    </option>
+
+                    <option value="Completed">
+                        Completed
+                    </option>
                 </select>
 
             </div>
 
             {/* Projects Table */}
+
             <div className="projects-table-container">
 
                 <table className="projects-table">
@@ -154,34 +188,62 @@ function Projects() {
 
                             <tr key={project.id}>
 
+                                {/* Project Name */}
+
                                 <td>
                                     <strong className="project-name">
                                         {project.name}
                                     </strong>
                                 </td>
 
-                                <td>{project.client}</td>
-
-                                <td>{project.location}</td>
-
-                                <td>{project.startDate}</td>
-
-                                <td>{project.endDate}</td>
+                                {/* Client */}
 
                                 <td>
-                    <span
-                        className={`status ${project.status.toLowerCase()}`}
-                    >
-                      {project.status}
-                    </span>
+                                    {project.client}
                                 </td>
+
+                                {/* Location */}
+
+                                <td>
+                                    {project.location}
+                                </td>
+
+                                {/* Start Date */}
+
+                                <td>
+                                    {project.startDate}
+                                </td>
+
+                                {/* End Date */}
+
+                                <td>
+                                    {project.status === "Ongoing"
+                                        ? "-----"
+                                        : project.endDate}
+                                </td>
+
+                                {/* Status */}
+
+                                <td>
+                                    <span
+                                        className={`status ${
+                                            project.status.toLowerCase()
+                                        }`}
+                                    >
+                                        {project.status}
+                                    </span>
+                                </td>
+
+                                {/* Actions */}
 
                                 <td>
 
                                     <button
                                         className="view-btn"
                                         onClick={() =>
-                                            navigate(`/projects/${project.id}`)
+                                            navigate(
+                                                `/projects/${project.id}`
+                                            )
                                         }
                                     >
                                         View
@@ -190,7 +252,9 @@ function Projects() {
                                     <button
                                         className="edit-btn"
                                         onClick={() =>
-                                            navigate(`/projects/${project.id}`)
+                                            navigate(
+                                                `/projects/${project.id}/edit`
+                                            )
                                         }
                                     >
                                         Edit
