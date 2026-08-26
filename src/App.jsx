@@ -18,6 +18,10 @@ import EditEmployee from "./pages/EditEmployee";
 import Materials from "./pages/Materials";
 import AddMaterial from "./pages/AddMaterial";
 
+import Expenses from "./pages/Expenses";
+import Payments from "./pages/Payments";
+import Reports from "./pages/Reports";
+
 function App() {
     return (
         <BrowserRouter>
@@ -25,7 +29,7 @@ function App() {
             <Routes>
 
                 {/* =========================
-                    DEFAULT
+                    DEFAULT PAGE
                 ========================= */}
 
                 <Route
@@ -117,6 +121,33 @@ function App() {
                 <Route
                     path="/materials/add"
                     element={<AddMaterial />}
+                />
+
+                {/* =========================
+                    EXPENSES
+                ========================= */}
+
+                <Route
+                    path="/expenses"
+                    element={<Expenses />}
+                />
+
+                {/* =========================
+                    PAYMENTS
+                ========================= */}
+
+                <Route
+                    path="/payments"
+                    element={<Payments />}
+                />
+
+                {/* =========================
+                    REPORTS
+                ========================= */}
+
+                <Route
+                    path="/reports"
+                    element={<Reports />}
                 />
 
             </Routes>
