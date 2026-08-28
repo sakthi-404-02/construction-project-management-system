@@ -1,0 +1,535 @@
+/* =========================
+   DAILY PROGRESS PAGE
+========================= */
+
+.daily-progress-page {
+    min-height: 100vh;
+    padding: 32px;
+    background: #f8fafc;
+    color: #172033;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.daily-progress-header {
+    max-width: 1150px;
+    margin: 0 auto 28px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.daily-progress-label {
+    margin: 0 0 7px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.daily-progress-header h1 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.daily-progress-description {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.daily-progress-card {
+    max-width: 1150px;
+
+    margin: 0 auto 25px;
+
+    padding: 28px;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    box-shadow:
+            0 3px 12px rgba(15, 23, 42, 0.05);
+
+    box-sizing: border-box;
+}
+
+.daily-progress-card h2 {
+    margin: 0 0 25px;
+
+    color: #111827;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.daily-progress-form {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe2ea;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    color: #1e293b;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-group input,
+.form-group select {
+    height: 44px;
+
+    padding: 0 13px;
+}
+
+.form-group textarea {
+    min-height: 120px;
+
+    padding: 13px;
+
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow:
+            0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================
+   FORM BUTTONS
+========================= */
+
+.form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #f1f5f9;
+}
+
+.cancel-progress-btn,
+.save-progress-btn {
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.cancel-progress-btn {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+.cancel-progress-btn:hover {
+    background: #e2e8f0;
+}
+
+.save-progress-btn {
+    background: #2563eb;
+
+    color: white;
+}
+
+.save-progress-btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   RECORDS SECTION
+========================= */
+
+.daily-progress-records {
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+            0 3px 12px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================
+   RECORDS HEADER
+========================= */
+
+.records-header {
+    padding: 22px 24px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.records-label {
+    margin: 0 0 6px;
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.records-header h2 {
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+.records-count {
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   EMPTY RECORDS
+========================= */
+
+.no-progress-records {
+    padding: 45px;
+
+    text-align: center;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.progress-table-container {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.progress-table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+}
+
+.progress-table th {
+    padding: 15px 18px;
+
+    text-align: left;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.progress-table td {
+    padding: 15px 18px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.progress-table tbody tr {
+    transition: 0.15s;
+}
+
+.progress-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.progress-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.progress-table td strong {
+    color: #1e293b;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-cell {
+    min-width: 130px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.progress-bar {
+    width: 80px;
+
+    height: 7px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #e2e8f0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    transition: width 0.3s ease;
+}
+
+.progress-cell span {
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .daily-progress-page {
+        padding: 20px;
+    }
+
+    .daily-progress-header h1 {
+        font-size: 26px;
+    }
+
+    .daily-progress-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        grid-column: auto;
+
+        flex-direction: column;
+    }
+
+    .cancel-progress-btn,
+    .save-progress-btn {
+        width: 100%;
+    }
+
+    .records-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+}
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.progress-edit-btn,
+.progress-delete-btn {
+    border: none;
+
+    padding: 7px 11px;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-right: 6px;
+
+    transition: 0.2s;
+}
+
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.progress-edit-btn {
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.progress-edit-btn:hover {
+    background: #dbeafe;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.progress-delete-btn {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+.progress-delete-btn:hover {
+    background: #fee2e2;
+
+    transform: translateY(-1px);
+}

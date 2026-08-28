@@ -1,0 +1,268 @@
+/* =========================
+   SITE REPORTS PAGE
+========================= */
+
+.site-reports-page {
+    padding: 30px;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-reports-header {
+    margin-bottom: 25px;
+}
+
+.site-reports-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.site-reports-header h1 {
+    font-size: 30px;
+    color: #0f172a;
+    margin: 0;
+}
+
+.site-reports-description {
+    color: #64748b;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.site-reports-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.site-reports-card h2 {
+    margin-top: 0;
+    margin-bottom: 22px;
+    color: #0f172a;
+    font-size: 20px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.site-reports-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #ffffff;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================
+   FORM BUTTON
+========================= */
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+.save-report-btn {
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.save-report-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   REPORT LIST
+========================= */
+
+.site-reports-list {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.reports-list-header {
+    padding: 22px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.reports-list-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 1px;
+    margin: 0 0 5px;
+}
+
+.reports-list-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #0f172a;
+}
+
+.reports-count {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.no-site-reports {
+    padding: 50px 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.site-reports-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.site-reports-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.site-reports-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.site-reports-table td {
+    padding: 15px 18px;
+    font-size: 13px;
+    color: #475569;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.site-reports-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.site-reports-table td strong {
+    color: #0f172a;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .site-reports-page {
+        padding: 20px;
+    }
+
+    .site-reports-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        grid-column: auto;
+    }
+
+    .reports-list-header {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+}

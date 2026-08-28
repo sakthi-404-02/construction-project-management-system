@@ -3,29 +3,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Projects from "./pages/Projects";
 import AddProject from "./pages/AddProject";
 import ProjectDetails from "./pages/ProjectDetails";
-import EditProject from "./pages/EditProject";
 
 import Clients from "./pages/Clients";
 import AddClient from "./pages/AddClient";
 import ClientDetails from "./pages/ClientDetails";
 import EditClient from "./pages/EditClient";
 
-import Employees from "./pages/Employees";
-import AddEmployee from "./pages/AddEmployee";
-import EmployeeDetails from "./pages/EmployeeDetails";
-import EditEmployee from "./pages/EditEmployee";
-
-import Materials from "./pages/Materials";
-import AddMaterial from "./pages/AddMaterial";
-
 import Expenses from "./pages/Expenses";
 import Payments from "./pages/Payments";
 import Reports from "./pages/Reports";
 
+import DailyProgress from "./pages/DailyProgress";
+import SiteReports from "./pages/SiteReports";
+
+
 function App() {
     return (
         <BrowserRouter>
-
             <Routes>
 
                 {/* =========================
@@ -36,6 +30,7 @@ function App() {
                     path="/"
                     element={<Projects />}
                 />
+
 
                 {/* =========================
                     PROJECTS
@@ -56,10 +51,6 @@ function App() {
                     element={<ProjectDetails />}
                 />
 
-                <Route
-                    path="/projects/:id/edit"
-                    element={<EditProject />}
-                />
 
                 {/* =========================
                     CLIENTS
@@ -85,46 +76,9 @@ function App() {
                     element={<EditClient />}
                 />
 
-                {/* =========================
-                    EMPLOYEES
-                ========================= */}
-
-                <Route
-                    path="/employees"
-                    element={<Employees />}
-                />
-
-                <Route
-                    path="/employees/add"
-                    element={<AddEmployee />}
-                />
-
-                <Route
-                    path="/employees/:id"
-                    element={<EmployeeDetails />}
-                />
-
-                <Route
-                    path="/employees/:id/edit"
-                    element={<EditEmployee />}
-                />
 
                 {/* =========================
-                    MATERIALS
-                ========================= */}
-
-                <Route
-                    path="/materials"
-                    element={<Materials />}
-                />
-
-                <Route
-                    path="/materials/add"
-                    element={<AddMaterial />}
-                />
-
-                {/* =========================
-                    EXPENSES
+                    MEMBER 4 - EXPENSES
                 ========================= */}
 
                 <Route
@@ -132,8 +86,9 @@ function App() {
                     element={<Expenses />}
                 />
 
+
                 {/* =========================
-                    PAYMENTS
+                    MEMBER 4 - PAYMENTS
                 ========================= */}
 
                 <Route
@@ -141,8 +96,9 @@ function App() {
                     element={<Payments />}
                 />
 
+
                 {/* =========================
-                    REPORTS
+                    MEMBER 4 - REPORTS
                 ========================= */}
 
                 <Route
@@ -150,8 +106,25 @@ function App() {
                     element={<Reports />}
                 />
 
+
+                {/* =========================
+                    MEMBER 4 - DAILY PROGRESS
+                ========================= */}
+
+                <Route
+                    path="/daily-progress"
+                    element={<DailyProgress />}
+                />
+                {/* Site Reports */}
+                <Route
+                    path="/site-reports"
+                    element={<SiteReports />}
+                />
+
             </Routes>
 
+
+        </Routes>
         </BrowserRouter>
     );
 }
