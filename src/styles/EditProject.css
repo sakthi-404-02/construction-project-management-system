@@ -1,0 +1,332 @@
+.edit-project-page {
+    min-height: 100vh;
+    padding: 40px;
+    background: #f7f8fa;
+    box-sizing: border-box;
+}
+
+/* Header */
+
+.edit-project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.edit-project-label {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #6b7280;
+}
+
+.edit-project-header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.edit-project-header p {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+/* Back Button */
+
+.edit-project-back-btn {
+    padding: 11px 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-project-back-btn:hover {
+    background: #f3f4f6;
+}
+
+/* Form */
+
+.edit-project-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Section */
+
+.edit-project-section {
+    padding: 35px;
+}
+
+.edit-project-section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.edit-project-number {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #111827;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.edit-project-section-title h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #111827;
+}
+
+.edit-project-section-title p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Grid */
+
+.edit-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+/* Form Group */
+
+.edit-project-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-project-group label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.edit-project-group label span {
+    margin-left: 4px;
+    color: #dc2626;
+}
+
+/* Text Input */
+
+.edit-project-group input[type="text"],
+.edit-project-group select {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.edit-project-group input[type="text"]:focus,
+.edit-project-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Date Wrapper */
+
+.date-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Date Input */
+
+.date-input-wrapper input[type="date"] {
+    width: 100%;
+    height: 46px;
+    padding: 0 48px 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.date-input-wrapper input[type="date"]:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Our Calendar Icon */
+
+.calendar-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Hide Browser Default Icon */
+
+.date-input-wrapper
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 0;
+    width: 48px;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Firefox */
+
+.date-input-wrapper input[type="date"] {
+    -moz-appearance: textfield;
+}
+
+/* Disabled End Date */
+
+.disabled-date {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f3f4f6 !important;
+    color: #6b7280 !important;
+    font-size: 14px;
+    box-sizing: border-box;
+    cursor: not-allowed;
+}
+
+/* Small Text */
+
+.edit-project-group small {
+    margin-top: 7px;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Footer */
+
+.edit-project-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 35px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+}
+
+/* Cancel */
+
+.edit-project-cancel-btn {
+    padding: 11px 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-project-cancel-btn:hover {
+    background: #f3f4f6;
+}
+
+/* Save */
+
+.edit-project-save-btn {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-project-save-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .edit-project-page {
+        padding: 20px;
+    }
+
+    .edit-project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .edit-project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-project-section {
+        padding: 25px;
+    }
+
+    .edit-project-footer {
+        padding: 20px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .edit-project-page {
+        padding: 15px;
+    }
+
+    .edit-project-header h1 {
+        font-size: 26px;
+    }
+
+    .edit-project-section {
+        padding: 20px;
+    }
+
+    .edit-project-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .edit-project-cancel-btn,
+    .edit-project-save-btn {
+        width: 100%;
+    }
+}
