@@ -1,5 +1,5 @@
 ```jsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/SiteReports.css";
 
 function SiteReports() {
@@ -14,7 +14,21 @@ function SiteReports() {
     };
 
     const [formData, setFormData] = useState(emptyForm);
-    const [reports, setReports] = useState([]);
+
+    // Load saved reports from LocalStorage
+    const [reports, setReports] = useState(() => {
+        const savedReports = localStorage.getItem("siteReports");
+
+        return savedReports ? JSON.parse(savedReports) : [];
+    });
+
+    // Save reports to LocalStorage whenever reports change
+    useEffect(() => {
+        localStorage.setItem(
+            "siteReports",
+            JSON.stringify(reports)
+        );
+    }, [reports]);
 
     // Handle input changes
     const handleChange = (event) => {
@@ -30,7 +44,6 @@ function SiteReports() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Required field validation
         if (
             !formData.project ||
             !formData.date ||
@@ -53,7 +66,6 @@ function SiteReports() {
 
         alert("Site report saved successfully!");
 
-        // Clear form
         setFormData(emptyForm);
     };
 
@@ -72,6 +84,7 @@ function SiteReports() {
             <div className="site-reports-header">
 
                 <div>
+
                     <p className="site-reports-label">
                         PROJECT MANAGEMENT
                     </p>
@@ -83,6 +96,7 @@ function SiteReports() {
                     <p className="site-reports-description">
                         Create and manage construction site reports.
                     </p>
+
                 </div>
 
             </div>
@@ -135,7 +149,7 @@ function SiteReports() {
                     </div>
 
 
-                    {/* REPORT DATE */}
+                    {/* DATE */}
 
                     <div className="form-group">
 
@@ -339,7 +353,7 @@ function SiteReports() {
                 </div>
 
 
-                {/* NO REPORTS */}
+                {/* EMPTY STATE */}
 
                 {reports.length === 0 ? (
 

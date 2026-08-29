@@ -1,3 +1,4 @@
+```jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Projects from "./pages/Projects";
@@ -15,7 +16,6 @@ import Reports from "./pages/Reports";
 
 import DailyProgress from "./pages/DailyProgress";
 import SiteReports from "./pages/SiteReports";
-
 
 function App() {
     return (
@@ -108,25 +108,28 @@ function App() {
 
 
                 {/* =========================
-                    MEMBER 4 - DAILY PROGRESS
+                    DAILY PROGRESS
                 ========================= */}
 
                 <Route
                     path="/daily-progress"
                     element={<DailyProgress />}
                 />
-                {/* Site Reports */}
+
+
+                {/* =========================
+                    SITE REPORTS
+                ========================= */}
+
                 <Route
                     path="/site-reports"
                     element={<SiteReports />}
                 />
 
             </Routes>
-
-
-        </Routes>
         </BrowserRouter>
     );
 }
 
 export default App;
+```
