@@ -1,0 +1,15 @@
+.app-layout {
+    min-height: 100vh;
+}
+
+.main-content {
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+    background: #f8fafc;
+}
+
+.main-content main {
+    min-height: calc(100vh - 80px);
+}

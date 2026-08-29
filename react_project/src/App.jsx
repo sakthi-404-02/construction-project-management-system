@@ -1,11 +1,35 @@
-import Button from "./Button.jsx";
-import MyComponent from "./MyComponent.jsx";
-function App(){
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+
+function App() {
+
   return (
-    <>
-    <Button />
-    <MyComponent />
-    </>
-  )
+      <BrowserRouter>
+
+        <Routes>
+
+          {/* Login */}
+          <Route
+              path="/"
+              element={<Login />}
+          />
+
+          {/* Dashboard */}
+          <Route
+              path="/dashboard"
+              element={<Dashboard />}
+          />
+
+        </Routes>
+
+      </BrowserRouter>
+  );
 }
+
 export default App;
