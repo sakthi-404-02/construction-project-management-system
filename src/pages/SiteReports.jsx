@@ -1,58 +1,43 @@
-```jsx
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/SiteReports.css";
 
 function SiteReports() {
-    const emptyForm = {
+
+    const [reports, setReports] = useState([]);
+
+    const [formData, setFormData] = useState({
         project: "",
-        date: "",
-        reportTitle: "",
-        siteCondition: "",
-        workStatus: "",
+        reportDate: "",
+        weather: "",
+        workCompleted: "",
+        workersPresent: "",
         issues: "",
-        description: "",
-    };
-
-    const [formData, setFormData] = useState(emptyForm);
-
-    // Load saved reports from LocalStorage
-    const [reports, setReports] = useState(() => {
-        const savedReports = localStorage.getItem("siteReports");
-
-        return savedReports ? JSON.parse(savedReports) : [];
     });
 
-    // Save reports to LocalStorage whenever reports change
-    useEffect(() => {
-        localStorage.setItem(
-            "siteReports",
-            JSON.stringify(reports)
-        );
-    }, [reports]);
 
-    // Handle input changes
+    /* =========================
+       HANDLE INPUT CHANGE
+    ========================= */
+
     const handleChange = (event) => {
+
         const { name, value } = event.target;
 
         setFormData((previousData) => ({
             ...previousData,
             [name]: value,
         }));
+
     };
 
-    // Save report
-    const handleSubmit = (event) => {
-        event.preventDefault();
 
-        if (
-            !formData.project ||
-            !formData.date ||
-            !formData.reportTitle ||
-            !formData.workStatus
-        ) {
-            alert("Please fill all required fields.");
-            return;
-        }
+    /* =========================
+       SAVE REPORT
+    ========================= */
+
+    const handleSubmit = (event) => {
+
+        event.preventDefault();
 
         const newReport = {
             id: Date.now(),
@@ -64,18 +49,25 @@ function SiteReports() {
             newReport,
         ]);
 
+
+        setFormData({
+            project: "",
+            reportDate: "",
+            weather: "",
+            workCompleted: "",
+            workersPresent: "",
+            issues: "",
+        });
+
         alert("Site report saved successfully!");
 
-        setFormData(emptyForm);
     };
 
-    // Clear form
-    const handleCancel = () => {
-        setFormData(emptyForm);
-    };
 
     return (
+
         <div className="site-reports-page">
+
 
             {/* =========================
                 HEADER
@@ -83,27 +75,23 @@ function SiteReports() {
 
             <div className="site-reports-header">
 
-                <div>
+                <p className="site-reports-label">
+                    CONSTRUCTION MANAGEMENT
+                </p>
 
-                    <p className="site-reports-label">
-                        PROJECT MANAGEMENT
-                    </p>
+                <h1>
+                    Site Reports
+                </h1>
 
-                    <h1>
-                        Site Reports
-                    </h1>
-
-                    <p className="site-reports-description">
-                        Create and manage construction site reports.
-                    </p>
-
-                </div>
+                <p className="site-reports-description">
+                    Create and manage daily site reports.
+                </p>
 
             </div>
 
 
             {/* =========================
-                CREATE REPORT FORM
+                CREATE REPORT
             ========================= */}
 
             <div className="site-reports-card">
@@ -112,211 +100,155 @@ function SiteReports() {
                     Create Site Report
                 </h2>
 
+
                 <form
                     className="site-reports-form"
                     onSubmit={handleSubmit}
                 >
 
+
                     {/* PROJECT */}
 
-                    <div className="form-group">
+                    <div className="site-reports-form-group">
 
-                        <label htmlFor="project">
-                            Project *
+                        <label>
+                            Project Name
                         </label>
 
-                        <select
-                            id="project"
+                        <input
+                            type="text"
                             name="project"
+                            placeholder="Enter project name"
                             value={formData.project}
                             onChange={handleChange}
-                        >
-
-                            <option value="">
-                                Select Project
-                            </option>
-
-                            <option value="Chennai Building Project">
-                                Chennai Building Project
-                            </option>
-
-                            <option value="Coimbatore Office Project">
-                                Coimbatore Office Project
-                            </option>
-
-                        </select>
+                            required
+                        />
 
                     </div>
 
 
                     {/* DATE */}
 
-                    <div className="form-group">
+                    <div className="site-reports-form-group">
 
-                        <label htmlFor="date">
-                            Report Date *
+                        <label>
+                            Report Date
                         </label>
 
                         <input
-                            id="date"
                             type="date"
-                            name="date"
-                            value={formData.date}
+                            name="reportDate"
+                            value={formData.reportDate}
                             onChange={handleChange}
+                            required
                         />
 
                     </div>
 
 
-                    {/* REPORT TITLE */}
+                    {/* WEATHER */}
 
-                    <div className="form-group full-width">
+                    <div className="site-reports-form-group">
 
-                        <label htmlFor="reportTitle">
-                            Report Title *
+                        <label>
+                            Weather Condition
+                        </label>
+
+                        <select
+                            name="weather"
+                            value={formData.weather}
+                            onChange={handleChange}
+                            required
+                        >
+
+                            <option value="">
+                                Select weather
+                            </option>
+
+                            <option value="Sunny">
+                                Sunny
+                            </option>
+
+                            <option value="Cloudy">
+                                Cloudy
+                            </option>
+
+                            <option value="Rainy">
+                                Rainy
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    {/* WORKERS */}
+
+                    <div className="site-reports-form-group">
+
+                        <label>
+                            Workers Present
                         </label>
 
                         <input
-                            id="reportTitle"
-                            type="text"
-                            name="reportTitle"
-                            value={formData.reportTitle}
+                            type="number"
+                            name="workersPresent"
+                            placeholder="Enter number of workers"
+                            value={formData.workersPresent}
                             onChange={handleChange}
-                            placeholder="Enter report title"
+                            min="0"
+                            required
                         />
 
                     </div>
 
 
-                    {/* SITE CONDITION */}
+                    {/* WORK COMPLETED */}
 
-                    <div className="form-group">
+                    <div className="site-reports-form-group full-width">
 
-                        <label htmlFor="siteCondition">
-                            Site Condition
+                        <label>
+                            Work Completed
                         </label>
 
-                        <select
-                            id="siteCondition"
-                            name="siteCondition"
-                            value={formData.siteCondition}
+                        <textarea
+                            name="workCompleted"
+                            placeholder="Describe the work completed today"
+                            value={formData.workCompleted}
                             onChange={handleChange}
-                        >
-
-                            <option value="">
-                                Select Condition
-                            </option>
-
-                            <option value="Good">
-                                Good
-                            </option>
-
-                            <option value="Normal">
-                                Normal
-                            </option>
-
-                            <option value="Poor">
-                                Poor
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    {/* WORK STATUS */}
-
-                    <div className="form-group">
-
-                        <label htmlFor="workStatus">
-                            Work Status *
-                        </label>
-
-                        <select
-                            id="workStatus"
-                            name="workStatus"
-                            value={formData.workStatus}
-                            onChange={handleChange}
-                        >
-
-                            <option value="">
-                                Select Status
-                            </option>
-
-                            <option value="On Track">
-                                On Track
-                            </option>
-
-                            <option value="Delayed">
-                                Delayed
-                            </option>
-
-                            <option value="Completed">
-                                Completed
-                            </option>
-
-                        </select>
+                            required
+                        />
 
                     </div>
 
 
                     {/* ISSUES */}
 
-                    <div className="form-group full-width">
+                    <div className="site-reports-form-group full-width">
 
-                        <label htmlFor="issues">
-                            Issues / Problems
+                        <label>
+                            Issues / Remarks
                         </label>
 
-                        <input
-                            id="issues"
-                            type="text"
+                        <textarea
                             name="issues"
+                            placeholder="Enter any issues or remarks"
                             value={formData.issues}
                             onChange={handleChange}
-                            placeholder="Enter site issues or problems"
                         />
 
                     </div>
 
 
-                    {/* DESCRIPTION */}
+                    {/* SAVE BUTTON */}
 
-                    <div className="form-group full-width">
-
-                        <label htmlFor="description">
-                            Report Description
-                        </label>
-
-                        <textarea
-                            id="description"
-                            name="description"
-                            rows="5"
-                            value={formData.description}
-                            onChange={handleChange}
-                            placeholder="Enter detailed site report"
-                        ></textarea>
-
-                    </div>
-
-
-                    {/* BUTTONS */}
-
-                    <div className="form-actions">
-
-                        <button
-                            type="button"
-                            className="cancel-report-btn"
-                            onClick={handleCancel}
-                        >
-                            Cancel
-                        </button>
+                    <div className="site-reports-form-actions">
 
                         <button
                             type="submit"
                             className="save-report-btn"
                         >
-                            Save Site Report
+                            Save Report
                         </button>
 
                     </div>
@@ -327,43 +259,45 @@ function SiteReports() {
 
 
             {/* =========================
-                REPORT HISTORY
+                REPORT LIST
             ========================= */}
 
             <div className="site-reports-list">
+
 
                 <div className="reports-list-header">
 
                     <div>
 
                         <p className="reports-list-label">
-                            REPORT HISTORY
+                            SITE REPORTS
                         </p>
 
                         <h2>
-                            Site Reports
+                            All Reports
                         </h2>
 
                     </div>
 
-                    <span className="reports-count">
+
+                    <div className="reports-count">
+
                         {reports.length} Reports
-                    </span>
+
+                    </div>
 
                 </div>
 
 
-                {/* EMPTY STATE */}
-
                 {reports.length === 0 ? (
 
                     <div className="no-site-reports">
+
                         No site reports available.
+
                     </div>
 
                 ) : (
-
-                    /* REPORT TABLE */
 
                     <div className="site-reports-table-container">
 
@@ -371,57 +305,79 @@ function SiteReports() {
 
                             <thead>
 
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Project</th>
-                                    <th>Report Title</th>
-                                    <th>Condition</th>
-                                    <th>Work Status</th>
-                                    <th>Issues</th>
-                                    <th>Description</th>
-                                </tr>
+                            <tr>
+
+                                <th>
+                                    Project
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Weather
+                                </th>
+
+                                <th>
+                                    Workers
+                                </th>
+
+                                <th>
+                                    Work Completed
+                                </th>
+
+                                <th>
+                                    Issues
+                                </th>
+
+                            </tr>
 
                             </thead>
 
+
                             <tbody>
 
-                                {reports.map((report) => (
+                            {reports.map((report) => (
 
-                                    <tr key={report.id}>
+                                <tr key={report.id}>
 
-                                        <td>
-                                            {report.date}
-                                        </td>
+                                    <td>
 
-                                        <td>
-                                            <strong>
-                                                {report.project}
-                                            </strong>
-                                        </td>
+                                        <strong>
+                                            {report.project}
+                                        </strong>
 
-                                        <td>
-                                            {report.reportTitle}
-                                        </td>
+                                    </td>
 
-                                        <td>
-                                            {report.siteCondition || "-"}
-                                        </td>
 
-                                        <td>
-                                            {report.workStatus}
-                                        </td>
+                                    <td>
+                                        {report.reportDate}
+                                    </td>
 
-                                        <td>
-                                            {report.issues || "-"}
-                                        </td>
 
-                                        <td>
-                                            {report.description || "-"}
-                                        </td>
+                                    <td>
+                                        {report.weather}
+                                    </td>
 
-                                    </tr>
 
-                                ))}
+                                    <td>
+                                        {report.workersPresent}
+                                    </td>
+
+
+                                    <td>
+                                        {report.workCompleted}
+                                    </td>
+
+
+                                    <td>
+                                        {report.issues || "-"}
+                                    </td>
+
+                                </tr>
+
+                            ))}
 
                             </tbody>
 
@@ -434,8 +390,8 @@ function SiteReports() {
             </div>
 
         </div>
+
     );
 }
 
 export default SiteReports;
-```
