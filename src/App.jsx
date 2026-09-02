@@ -1,5 +1,7 @@
-```jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 import Projects from "./pages/Projects";
 import AddProject from "./pages/AddProject";
@@ -20,7 +22,18 @@ import SiteReports from "./pages/SiteReports";
 function App() {
     return (
         <BrowserRouter>
+
             <Routes>
+
+                {/* =========================
+                    LOGIN
+                ========================= */}
+
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+
 
                 {/* =========================
                     DEFAULT PAGE
@@ -29,6 +42,16 @@ function App() {
                 <Route
                     path="/"
                     element={<Projects />}
+                />
+
+
+                {/* =========================
+                    DASHBOARD - MEMBER 1
+                ========================= */}
+
+                <Route
+                    path="/dashboard"
+                    element={<Dashboard />}
                 />
 
 
@@ -127,9 +150,9 @@ function App() {
                 />
 
             </Routes>
+
         </BrowserRouter>
     );
 }
 
 export default App;
-```
